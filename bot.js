@@ -15,6 +15,18 @@ tweetData = [
     'today is the 9th of Winter, a Pluto Day!',
 ]
 
+let timing = {
+    twelveHour: 43200000,
+    eightHour: 28800000,
+    sixHour: 21600000,
+    fourHour: 1440000,
+    threeHour: 10800000,
+    twoHour: 7200000,
+    oneHour: 3600000,
+    thirtyMin: 1800000,
+    fifteenMin: 900000,
+}
+
 // const newDay = () => {
 //     let now = new Date()
 //     let start = new Date(now.getFullYear(), 0, 0)
@@ -43,7 +55,7 @@ function tweet(){
         }
     )
 }
-setInterval(tweet, 15000)
+setInterval(tweet, timing.fourHour)
 
 function retweet(){
 // params object outlines the parameters of the search
