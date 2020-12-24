@@ -2,17 +2,21 @@ const config = require('./config')
 const twit = require('twit')
 const T = new twit(config)
 
-tweetData = [
+tweetDayData = [
     'today is the 1st of Winter, a Mercury Day!',
     'today is the 2nd of Winter, a Venus Day!',
     'today is the 3rd of Winter, a Earth Day!',
     'today is the 4th of Winter, a Mars Day!',
-    'you cannot manage what you cannot measure... so how do you measure time, and how long is a month?',
     'today is the 5th of Winter, a Jupiter Day!',
     'today is the 6th of Winter, a Saturn Day!',
     'today is the 7th of Winter, a Uranus Day!',
     'today is the 8th of Winter, a Neptune Day!',
     'today is the 9th of Winter, a Pluto Day!',
+]
+
+tweetQuoteData = [
+    `"you cannot manage what you cannot measure" - Peter Drucker`,
+
 ]
 
 let timing = {
@@ -27,25 +31,22 @@ let timing = {
     fifteenMin: 900000,
 }
 
-// const newDay = () => {
-//     let now = new Date()
-//     let start = new Date(now.getFullYear(), 0, 0)
-//     let diff = now - start
-//     let oneDay = 1000*60*60*24
-//     let gregDay = Math.floor(diff/oneDay)
-//     console.log("dayOyear:", gregDay)
-//     let day = 0
-//     if (gregDay >= 355){
-//      day = gregDay-354
-//     } else {
-//      day = gregDay+11
-//     }
-//     return day
-// }
+let now = new Date()
+let start = new Date(now.getFullYear(), 0, 0)
+let diff = now - start
+let oneDay = 1000*60*60*24
+let gregDay = Math.floor(diff/oneDay)
+console.log("dayOyear:", gregDay)
+let day = 0
+if (gregDay >= 355){
+ day = gregDay-354
+} else {
+ day = gregDay+11
+}
 
-function tweet(){
-    let i = 4
-    let twit = tweetData[i]
+function tweetDay(){
+    let i = day
+    let twit = tweetDayData[i]
     console.log(twit)
     T.post(
         'statuses/update', 
@@ -55,7 +56,7 @@ function tweet(){
         }
     )
 }
-setInterval(tweet, timing.fourHour)
+setInterval(tweetDay, timing.fourHour)
 
 function retweet(){
 // params object outlines the parameters of the search
