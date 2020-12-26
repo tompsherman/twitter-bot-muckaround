@@ -1,19 +1,10 @@
 const config = require('./config')
 const twit = require('twit')
 const helpers = require('./helpers')
+const {theTweet} = require('./helpers')
 const T = new twit(config)
 
-tweetDayData = [
-    'today is the 1st of Winter, a Mercury Day!',
-    'today is the 2nd of Winter, a Venus Day!',
-    'today is the 3rd of Winter, a Earth Day!',
-    'today is the 4th of Winter, a Mars Day!',
-    'today is the 5th of Winter, a Jupiter Day!',
-    'today is the 6th of Winter, a Saturn Day!',
-    'today is the 7th of Winter, a Uranus Day!',
-    'today is the 8th of Winter, a Neptune Day!',
-    'today is the 9th of Winter, a Pluto Day!',
-]
+
 
 tweetQuoteData = [
     `"you cannot manage what you cannot measure" - Peter Drucker`,
@@ -32,32 +23,19 @@ let timing = {
     fifteenMin: 900000,
 }
 
-let now = new Date()
-let start = new Date(now.getFullYear(), 0, 0)
-let diff = now - start
-let oneDay = 1000*60*60*24
-let gregDay = Math.floor(diff/oneDay)
-console.log("dayOyear:", gregDay)
-let day = 0
-if (gregDay >= 355){
- day = gregDay-354
-} else {
- day = gregDay+11
-}
+
 
 function tweetDay(){
-    let i = day
-    let twit = tweetDayData[i]
-    console.log(twit)
+    console.log("did the [i] work?")
     T.post(
         'statuses/update', 
-        { status: `${twit}` }, 
+        { status: `${helpers.twit}` }, 
         function(err, data, response) {
             console.log(data)
         }
     )
 }
-setInterval(tweetDay, timing.fourHour)
+setInterval(tweetDay, 15000)
 
 function retweet(){
 // params object outlines the parameters of the search
